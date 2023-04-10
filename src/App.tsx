@@ -1,10 +1,10 @@
-import { FormEvent, useState } from 'react'
-import {Form } from './component/Form/Form'
-import Result  from './component/Result/Result'
-const today = new Date();
-const newDay:number= today.getDate()
-const newMonth:number= today.getMonth()+1
-const newYear:number= today.getFullYear()
+import { useState } from 'react'
+import { Form } from './component/Form/Form'
+import Result from './component/Result/Result'
+const today = new Date()
+const newDay: number = today.getDate()
+const newMonth: number = today.getMonth() + 1
+const newYear: number = today.getFullYear()
 
 type Data = {
   day: number
@@ -12,30 +12,24 @@ type Data = {
   year: number
 }
 
-
 function App() {
-  const [day, setDay] = useState<string>('--');
-  const [month, setMonth] = useState<string>('--');
-  const [year, setYear] = useState<string>('----');
-  
-  const handleSubmit = (data:Data) => {
+  const [day, setDay] = useState<string>('--')
+  const [month, setMonth] = useState<string>('--')
+  const [year, setYear] = useState<string>('----')
 
-    setDay(String( Math.abs((newDay) - (data.day))))
-    setMonth(String( Math.abs((newMonth) - (data.month))))
-    setYear(String( Math.abs((newYear) - (data.year))))
-   
-  
-  };
-    
-  
+  const handleSubmit = (data: Data) => {
+    setDay(String(Math.abs(newDay - data.day)))
+    setMonth(String(Math.abs(newMonth - data.month)))
+    setYear(String(Math.abs(newYear - data.year)))
+  }
 
   return (
-    <div className="App">
-      <Form onSubmit={handleSubmit}/>
+    <div className='App'>
+      <Form onSubmit={handleSubmit} />
       <Result
-      newYears={year} 
-      newMonths={month}
-      newDays={day}
+        newYears={year}
+        newMonths={month}
+        newDays={day}
       />
     </div>
   )

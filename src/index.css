@@ -8,12 +8,12 @@
   --Smokey-grey: hsl(0, 1%, 44%);
   --Off-black: hsl(0, 0%, 8%);
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   background-color: var(--Light-grey);
@@ -22,14 +22,19 @@ body{
   align-items: center;
   justify-content: center;
 }
-.App{
+.App {
   max-width: 600px;
   height: 70vh;
   width: 100%;
   background-color: var(--White);
-  border-bottom-right-radius:25% ;
+  border-bottom-right-radius: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 600px) {
+  .App {
+    max-width: 320px;
+  }
 }
