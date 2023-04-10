@@ -1,11 +1,16 @@
 import React from 'react'
 import './Result.css'
-const Result = () => {
+type Props={
+  newYears:string
+  newMonths:string
+  newDays:string
+}
+const Result = ({newYears,newMonths,newDays}:Props) => {
   return (
     <div className='result'>
-      <div className="years"><span>38</span> years</div>
-      <div className="months"><span>15</span> months</div>
-      <div className="days"><span>12</span> days</div>
+      <div className="years"><span>{newYears}</span> years</div>
+      <div className="months"><span>{newMonths}</span> months</div>
+      <div className="days"><span>{newDays}</span> days </div>
     </div>
   )
 }

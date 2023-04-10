@@ -2,16 +2,22 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import './Form.css'
+import { FormEvent } from 'react'
 
+
+type Props={
+onSubmit: (data:Data) => void 
+}
 type Data = {
   day: number
   month: number
   year: number
 }
-export const Form = () => {
+export const Form = ({onSubmit}:Props) => {
   const schema = yup.object().shape({
-    day: yup.number().min(1).max(31).required('Your day is Required!'),
     month: yup.number().min(1).max(12).required('Your day is Required!'),
+    day: yup.number().min(1).when('month',(month,schema)=> month==2||month==4||month==6||month==9||month==11?schema.max(30):schema.max(31) ).required('Your day is Required!'),
+    
     year: yup.number().min(1000).max(2023).required('Your day is Required!'),
    
   })
@@ -24,9 +30,7 @@ export const Form = () => {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = (data: Data): void => {
-    alert('Thank you ' + data.day + ' ' + data.month + ' ' + data.year)
-  }
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -37,6 +41,7 @@ export const Form = () => {
         type='text'
         placeholder='DD'
         {...register('day')}
+       
       />
       <p>{errors?.day?.message}</p>
       </div>
